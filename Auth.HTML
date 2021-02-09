@@ -1,0 +1,52 @@
+<p id="demo"></p>
+<script>
+var userName = "Z4D65KNDLAV74DSOBHF4TRVQSTWTBL5AEM3BU2A=";
+var passWord = "AXND5RG3WOLZBWR47WDOOKWHAZLAW2QQ4FL7XQ2SR2RMSWBS57IQ====";
+
+
+    var token = userName + ":" + passWord;
+ 
+    var hash = btoa(token); 
+
+    var auth= "Basic " + hash;
+
+
+document.getElementById("demo").innerHTML = auth;  
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+<!-- myHeaders.append("Authorization", auth); -->
+myHeaders.append("Authorization", "Basic WjRENjVLTkRMQVY3NERTT0JIRjRUUlZRU1RXVEJMNUFFTTNCVTJBPTpBWE5ENVJHM1dPTFpCV1I0N1dET09LV0hBWkxBVzJRUTRGTDdYUTJTUjJSTVNXQlM1N0lRPT09PQ==");
+myHeaders.append("Cookie", "_u=webservice-f13daba7"); 
+<!-- myHeaders.append("Access-Control-Allow-Origin", 'https://oauth.onshape.com/oauth/token');    -->
+<!-- myHeaders.append("Access-Control-Allow-Credentials", true); -->
+<!-- myHeaders.append("Access-Control-Allow-Headers", true); -->
+<!-- myHeaders.append("Access-Control-Allow-Methods", "POST"); -->
+
+//Access-Control-Expose-Headers: Content-Length,API-Key
+<!-- myHeaders.append('Access-Control-Allow-Origin', 'https://96871118-8084-46bd-9925-5e513a3a028b.mock.pstmn.io/partcreate');  -->
+ console.log( myHeaders);  
+var urlencoded = new URLSearchParams();
+urlencoded.append("client_id", "Z4D65KNDLAV74DSOBHF4TRVQSTWTBL5AEM3BU2A=");
+urlencoded.append("client_secret", "AXND5RG3WOLZBWR47WDOOKWHAZLAW2QQ4FL7XQ2SR2RMSWBS57IQ====");
+urlencoded.append("grant_type", "authorization_code");
+urlencoded.append("code", "pdBbCubbVVgdLWvqIzqyELEY");
+urlencoded.append("redirect_uri", "https://96871118-8084-46bd-9925-5e513a3a028b.mock.pstmn.io/partcreate");
+console.log( urlencoded);  
+
+var requestOptions = {
+  method: 'POST',
+  mode: 'no-cors',
+cache: 'no-cache', credentials: 'same-origin', 
+  headers: myHeaders,
+  body: urlencoded,
+  redirect: 'follow'
+  
+};
+<!-- document.getElementById("demo").innerHTML = requestOptions; -->
+ 
+
+fetch("https://oauth.onshape.com/oauth/token",  requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+</script>
